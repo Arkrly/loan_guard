@@ -1,0 +1,69 @@
+/* 
+ * LoanGuard - Additional Custom Styles
+ * Most styling is handled by Tailwind CSS inline
+ * This file is for any custom overrides or animations
+ */
+
+/* Ensure smooth transitions globally */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom focus styles for accessibility */
+*:focus-visible {
+    outline: 2px solid #07b6d5;
+    outline-offset: 2px;
+}
+
+/* Hide scrollbar but keep functionality on webkit */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Toast slide animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Glow effects */
+.glow-primary {
+    box-shadow: 0 0 20px rgba(7, 182, 213, 0.3);
+}
+
+.glow-secondary {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.glow-danger {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Number input - hide spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
