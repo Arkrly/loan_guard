@@ -1,3 +1,7 @@
+# ===========================================
+# MASTER BRANCH - PRODUCTION/DEPLOYMENT ONLY
+# ===========================================
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -52,18 +56,13 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
+# Django/Flask
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
-# Flask stuff:
 instance/
 .webassets-cache
-
-# Scrapy stuff:
-.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -72,8 +71,10 @@ docs/_build/
 .pybuilder/
 target/
 
-# Jupyter Notebook
+# Jupyter Notebook - EXCLUDED from production
 .ipynb_checkpoints
+notebooks/
+*.ipynb
 
 # IPython
 profile_default/
@@ -142,27 +143,25 @@ cython_debug/
 # VS Code
 .vscode/
 
-# Data files
-data/raw/*
-data/processed/*
-data/interim/*
-data/external/*
-!data/*/.gitkeep
+# ======================================
+# DEVELOPMENT ONLY - EXCLUDED FROM MASTER
+# ======================================
 
-# Model artifacts
-models/*.pkl
-models/*.joblib
-models/*.h5
-models/*.pt
-models/*.pth
-!models/.gitkeep
+# Datasets
+data/
 
-# Output files
-outputs/
-reports/figures/*.png
-reports/figures/*.jpg
-reports/figures/*.pdf
-!reports/figures/.gitkeep
+# Temporary folders
+temp/
+tmp/
+*.tmp
+
+# Training model files (keep only optimized for deployment)
+models/*.csv
+models/logistic_regression_tuned.pkl
+models/random_forest_tuned.pkl
+models/xgboost_tuned.pkl
+models/model_info.pkl
+models/best_model.pkl
 
 # MLflow
 mlruns/
@@ -184,11 +183,6 @@ Thumbs.db
 *.swo
 *~
 
-# Temporary files
-tmp/
-temp/
-*.tmp
-
 # Large data files
 *.csv
 *.xlsx
@@ -196,8 +190,6 @@ temp/
 *.parquet
 *.feather
 *.pickle
-*.pkl
-!data/sample/*.csv
 
 # Credentials
 credentials/
