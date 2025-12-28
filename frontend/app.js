@@ -128,9 +128,13 @@ function updateProgress(percent) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing...');
     initDOMElements();
+    
+    // Initialize term display first to show correct values
+    updateTermDisplay();
+    setTermPreset(360); // Set default to 30 years
+    
     initializeApp();
     initFormHandler();
-    updateTermDisplay();
 });
 
 // ===== Self Employed Toggle =====
