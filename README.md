@@ -1,130 +1,97 @@
-# 🛡️ LoanGuard - AI Risk Assessment System
+# 🛡️ LoanGuard
 
-> 🎓 **Portfolio Project** | Full-Stack ML Application with Modern UI
+**AI-Powered Loan Risk Assessment System**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python" alt="Python">
-  <img src="https://img.shields.io/badge/FastAPI-0.104+-green?style=flat-square&logo=fastapi" alt="FastAPI">
-  <img src="https://img.shields.io/badge/scikit--learn-1.3+-orange?style=flat-square&logo=scikitlearn" alt="scikit-learn">
-  <img src="https://img.shields.io/badge/Tailwind-3.0+-06B6D4?style=flat-square&logo=tailwindcss" alt="Tailwind">
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/ML-scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
-A modern machine learning system that predicts loan approval risk in real-time. Features a beautiful glassmorphism UI, robust REST API, and production-ready validation.
+<p align="center">
+  <strong>Predict loan approval risk in real-time with machine learning</strong>
+</p>
 
 ---
 
-## ✨ Features
+## What is LoanGuard?
 
-| Feature | Description |
-|---------|-------------|
-| 🤖 **ML-Powered Predictions** | Logistic Regression model with 82% accuracy |
-| 🎨 **Modern Glassmorphism UI** | Dark theme with cyan accents, smooth animations |
-| 💰 **INR Currency Support** | Designed for Indian market loan assessment |
-| ✅ **Input Validation** | Comprehensive Pydantic validation |
-| 📊 **Animated Risk Score** | Visual circular progress with color coding |
-| 📜 **Analysis History** | Local storage persists recent predictions |
-| 🎚️ **Interactive Controls** | Slider presets, toggle buttons |
-| 📖 **API Documentation** | Auto-generated Swagger/OpenAPI docs |
+LoanGuard is an intelligent loan risk assessment application that uses machine learning to predict whether a loan application is likely to be approved or rejected. It helps financial institutions make data-driven decisions by analyzing applicant profiles and providing instant risk scores.
 
----
+### Key Features
 
-## 🖼️ UI Preview
-
-### Modern Dashboard
-- **Sidebar** with history tracking
-- **Form sections** with glassmorphism cards
-- **Interactive loan term** slider with year presets
-- **Real-time validation** and toast notifications
-
-### Result Panel
-- **Status chip** - Approved (green) / Rejected (red)
-- **Risk gauge** - Animated circular progress
-- **Stats cards** - Approval probability, threshold, model version
+- **🤖 AI-Powered Predictions** — Logistic Regression model with 82% accuracy
+- **⚡ Real-Time Analysis** — Instant risk assessment via REST API
+- **🎨 Modern UI** — Beautiful glassmorphism interface with dark theme
+- **💰 Indian Market Ready** — Designed for INR-based loan applications
+- **📊 Risk Visualization** — Animated risk score gauge with color coding
+- **📜 History Tracking** — Keep track of recent predictions
 
 ---
 
-## 🚀 Quick Start
+## Live Demo
 
-### Prerequisites
-- Python 3.8+
-- pip
+🌐 **[Try LoanGuard Live](https://loanguard.onrender.com)** *(Hosted on Render)*
 
-### Installation
+---
+
+## How It Works
+
+1. **Enter Applicant Details** — Fill in income, loan amount, credit history, and more
+2. **Get Instant Prediction** — AI analyzes the profile in milliseconds
+3. **View Risk Score** — See approval probability and risk level
+4. **Make Decisions** — Use insights to guide lending decisions
+
+### Input Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| Applicant Income | Monthly income in INR |
+| Co-applicant Income | Partner's monthly income |
+| Loan Amount | Requested loan amount (in thousands) |
+| Loan Term | Repayment period in months |
+| Credit History | Credit score status (Good/Bad) |
+| Property Area | Urban / Semi-Urban / Rural |
+| Personal Details | Gender, Marital Status, Dependents, Education |
+
+### Output
+
+```json
+{
+  "prediction": "Approved",
+  "probability_approved": 0.85,
+  "risk_score": 15.0,
+  "model_version": "1.0"
+}
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Backend** | FastAPI, Python 3.8+ |
+| **ML Model** | scikit-learn (Logistic Regression) |
+| **Frontend** | HTML, Tailwind CSS, Vanilla JS |
+| **Deployment** | Render |
+
+---
+
+## API Reference
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Web interface |
+| `/health` | GET | Health check & model status |
+| `/predict` | POST | Get loan risk prediction |
+| `/docs` | GET | API documentation (Swagger) |
+
+### Quick API Test
 
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/loan_risk_sys.git
-cd loan_risk_sys
-
-# Create virtual environment
-python -m venv .venv
-
-# Activate (Windows)
-.venv\Scripts\activate
-# Activate (Linux/Mac)
-# source .venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Run the Application
-
-```bash
-uvicorn src.app:app --host 127.0.0.1 --port 8080
-```
-
-Open your browser at: **http://127.0.0.1:8080**
-
----
-
-## 📁 Project Structure
-
-```
-loan_risk_sys/
-├── 📂 data/
-│   ├── raw/                 # Original dataset
-│   ├── processed/           # Cleaned & transformed data
-│   └── sample/              # Sample data for testing
-├── 📂 frontend/
-│   ├── index.html           # Main UI (Tailwind CSS)
-│   ├── app.js               # Frontend logic
-│   └── style.css            # Custom styles
-├── 📂 model/
-│   ├── model.pkl            # Trained model
-│   ├── scaler.pkl           # Feature scaler
-│   └── features.json        # Feature configuration
-├── 📂 notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   └── 03_model_training.ipynb
-├── 📂 src/
-│   └── app.py               # FastAPI application
-├── .env.example             # Environment variables template
-├── .gitignore
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-└── requirements.txt
-```
-
----
-
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/` | Serve frontend UI |
-| `GET` | `/health` | Health check & model status |
-| `POST` | `/predict` | Get loan risk prediction |
-| `GET` | `/docs` | Swagger API documentation |
-
-### Example Request
-
-```bash
-curl -X POST "http://127.0.0.1:8080/predict" \
+curl -X POST "https://loanguard.onrender.com/predict" \
   -H "Content-Type: application/json" \
   -d '{
     "Gender": "Male",
@@ -141,41 +108,9 @@ curl -X POST "http://127.0.0.1:8080/predict" \
   }'
 ```
 
-### Example Response
-
-```json
-{
-  "prediction": "Approved",
-  "probability_approved": 0.85,
-  "risk_score": 15.0,
-  "threshold_used": 0.3129,
-  "model_version": "1.0"
-}
-```
-
 ---
 
-## 🛠️ Tech Stack
-
-### Backend
-- **FastAPI** - Modern async Python web framework
-- **Pydantic** - Data validation
-- **scikit-learn** - Machine learning
-- **joblib** - Model serialization
-
-### Frontend
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vanilla JavaScript** - No framework dependencies
-- **Material Symbols** - Google's icon library
-
-### ML Pipeline
-- **SMOTE** - Handling class imbalance
-- **Logistic Regression** - Classification model
-- **StandardScaler** - Feature normalization
-
----
-
-## 📊 Model Performance
+## Model Performance
 
 | Metric | Score |
 |--------|-------|
@@ -186,27 +121,47 @@ curl -X POST "http://127.0.0.1:8080/predict" \
 
 ---
 
-## 🤝 Contributing
+## Run Locally
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```bash
+# Clone the repository
+git clone https://github.com/Arkrly/loan_guard.git
+cd loan_guard
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+# source .venv/bin/activate  # Linux/Mac
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the server
+uvicorn src.app:app --host 127.0.0.1 --port 8080
+```
+
+Open **http://127.0.0.1:8080** in your browser.
 
 ---
 
-## 📄 License
+## Contributing
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+> **Note:** All development work happens on the `dev` branch. Switch to `dev` for the full development environment including ML models, datasets, notebooks, and development documentation.
+
+```bash
+git checkout dev
+```
 
 ---
 
-## 👤 Author
+## License
 
-**Your Name**
-- Portfolio: [your-portfolio.com](https://your-portfolio.com)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
-- GitHub: [@yourusername](https://github.com/yourusername)
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 <p align="center">
-  Made with ❤️ for learning ML & Full-Stack Development
+  Made with ❤️ by <a href="https://github.com/Arkrly">Arkrly</a>
 </p>
