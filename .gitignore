@@ -142,28 +142,6 @@ cython_debug/
 # VS Code
 .vscode/
 
-# Data files
-data/raw/*
-data/processed/*
-data/interim/*
-data/external/*
-!data/*/.gitkeep
-
-# Model artifacts
-models/*.pkl
-models/*.joblib
-models/*.h5
-models/*.pt
-models/*.pth
-!models/.gitkeep
-
-# Output files
-outputs/
-reports/figures/*.png
-reports/figures/*.jpg
-reports/figures/*.pdf
-!reports/figures/.gitkeep
-
 # MLflow
 mlruns/
 mlartifacts/
@@ -188,16 +166,6 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
-
-# Large data files
-*.csv
-*.xlsx
-*.xls
-*.parquet
-*.feather
-*.pickle
-*.pkl
-!data/sample/*.csv
 
 # Credentials
 credentials/
