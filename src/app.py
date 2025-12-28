@@ -20,6 +20,8 @@ logger = logging.getLogger(__name__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 MODEL_PATH = os.path.join(PROJECT_ROOT, 'models', 'best_model_optimized.pkl')
+SCALER_PATH = os.path.join(PROJECT_ROOT, 'models', 'scaler.pkl')
+FEATURE_COLS_PATH = os.path.join(PROJECT_ROOT, 'data', 'processed', 'feature_columns.txt')
 DATA_PROCESSED_PATH = os.path.join(PROJECT_ROOT, 'data', 'processed')
 RAW_DATA_PATH = os.path.join(PROJECT_ROOT, 'data', 'raw', 'train_u6lujuX_CVtuZ9i.csv')
 
@@ -183,19 +185,22 @@ def load_resources():
     model = joblib.load(MODEL_PATH)
     logger.info(f"Model loaded successfully from {MODEL_PATH}")
     
-    # 2. Reconstruct Scaler
-    # We fit the scaler on X_train_smote (as done in the notebook) to match training distribution
-    logger.info("Reconstructing scaler...")
-    train_smote_path = os.path.join(DATA_PROCESSED_PATH, 'X_train_smote.csv')
-    if os.path.exists(train_smote_path):
-        df_smote = pd.read_csv(train_smote_path)
-        scaler = StandardScaler()
-        scaler.fit(df_smote)
-        logger.info("Scaler fitted on training data")
+    # 2. Load Pre-fitted Scaler
+    logger.info("Loading scaler...")
+    if os.path.exists(SCALER_PATH):
+        scaler = joblib.load(SCALER_PATH)
+        logger.info(f"Scaler loaded from {SCALER_PATH}")
     else:
-        # Fallback: Create generic scaler if file missing (Warning: might drift)
-        logger.warning("X_train_smote.csv not found. Using default scaler - predictions may drift!")
-        scaler = StandardScaler()
+        # Fallback: Try to fit from training data (for dev environment)
+        train_smote_path = os.path.join(DATA_PROCESSED_PATH, 'X_train_smote.csv')
+        if os.path.exists(train_smote_path):
+            df_smote = pd.read_csv(train_smote_path)
+            scaler = StandardScaler()
+            scaler.fit(df_smote)
+            logger.info("Scaler fitted on training data (fallback)")
+        else:
+            logger.error("Neither scaler.pkl nor X_train_smote.csv found! Predictions will fail.")
+            scaler = None
         
     # 3. Get Feature Columns (Constraint)
     # The model expects specific columns in specific order
