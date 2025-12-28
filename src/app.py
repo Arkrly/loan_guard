@@ -408,15 +408,30 @@ async def predict_loan_risk(application: LoanApplication):
         )
 
 
+# --- Health Check Endpoint ---
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint for Render and monitoring.
+    Returns status, model state, and version info.
+    """
+    return {
+        "status": "healthy",
+        "model_loaded": model is not None,
+        "version": "1.0",
+        "message": "LoanGuard API is running"
+    }
+
+
 # --- API Info Endpoint ---
-@app.get("/")
+@app.get("/api")
 async def api_info():
     """
     API information endpoint.
     Note: Frontend is mounted separately, this won't be reached if frontend exists.
     """
     return {
-        "name": "LoanIQ - Smart Risk Intelligence API",
+        "name": "LoanGuard - AI Risk Assessment API",
         "version": "1.0",
         "docs": "/docs",
         "health": "/health",
