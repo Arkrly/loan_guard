@@ -46,12 +46,14 @@ python -m venv .venv
 # Activate (Linux/Mac)
 source .venv/bin/activate
 
-# Install all dependencies (including dev dependencies)
-pip install -r requirements.txt
+# Install all development dependencies
+pip install -r requirements-dev.txt
 
 # Install Jupyter kernel
 python -m ipykernel install --user --name=loanguard --display-name="LoanGuard Python"
 ```
+
+> **Note:** `requirements-dev.txt` includes all production dependencies plus development tools (Jupyter, testing, ML training, visualization, etc.).
 
 ### Environment Variables
 
@@ -123,7 +125,8 @@ loan_guard/
 ├── DEVELOPMENT.md               # This file
 ├── LICENSE                      # MIT License
 ├── README.md                    # Project overview
-└── requirements.txt             # Python dependencies
+├── requirements.txt             # Production dependencies (minimal)
+└── requirements-dev.txt         # Development dependencies (full)
 ```
 
 ---

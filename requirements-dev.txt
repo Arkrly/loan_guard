@@ -1,0 +1,80 @@
+# LoanGuard - Development Dependencies
+# Full requirements for model training, experimentation, and development
+# 
+# Usage: pip install -r requirements-dev.txt
+# This includes all production dependencies plus development tools
+
+# ============================================
+# PRODUCTION DEPENDENCIES (from requirements.txt)
+# ============================================
+-r requirements.txt
+
+# ============================================
+# DATA SCIENCE & VISUALIZATION
+# ============================================
+scipy>=1.10.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.18.0
+
+# ============================================
+# MACHINE LEARNING & MODEL TRAINING
+# ============================================
+xgboost>=2.0.0
+lightgbm>=4.0.0
+imbalanced-learn>=0.11.0
+optuna>=3.4.0
+
+# ============================================
+# MODEL EXPLAINABILITY
+# ============================================
+shap>=0.42.0
+
+# ============================================
+# STATISTICAL ANALYSIS
+# ============================================
+statsmodels>=0.14.0
+
+# ============================================
+# DATABASE CONNECTIVITY
+# ============================================
+sqlalchemy>=2.0.0
+pymysql>=1.1.0
+
+# ============================================
+# JUPYTER & NOTEBOOKS
+# ============================================
+jupyterlab>=4.0.0
+notebook>=7.0.0
+ipykernel>=6.25.0
+ipywidgets>=8.1.0
+
+# ============================================
+# TESTING
+# ============================================
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+httpx>=0.25.0
+
+# ============================================
+# CODE QUALITY
+# ============================================
+black>=23.10.0
+isort>=5.12.0
+flake8>=6.1.0
+mypy>=1.6.0
+
+# ============================================
+# UTILITIES
+# ============================================
+tqdm>=4.66.0
+openpyxl>=3.1.0
+PyYAML>=6.0.0
+python-multipart>=0.0.6
+
+# ============================================
+# DOCUMENTATION
+# ============================================
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
