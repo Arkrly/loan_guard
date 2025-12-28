@@ -1,5 +1,16 @@
 # 🛡️ LoanGuard - AI Risk Assessment System
 
+> 🔧 **Development Branch** | Full development workspace with ML models, datasets, and notebooks
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="DEVELOPMENT.md">Development Guide</a> •
+  <a href="CONTRIBUTING.md">Contributing</a> •
+  <a href="#-api-endpoints">API Docs</a>
+</p>
+
+---
+
 > 🎓 **Portfolio Project** | Full-Stack ML Application with Modern UI
 
 <p align="center">
