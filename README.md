@@ -16,6 +16,20 @@ LoanGuard is an intelligent loan risk assessment application that uses machine l
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard
+*Modern glassmorphism UI with intuitive form layout*
+
+![Dashboard](docs/images/dashboard.png)
+
+### Risk Assessment Result
+*Clear visualization of approval status and risk score*
+
+![Result](docs/images/result.png)
+
+---
+
 ## What Can It Do?
 
 ### ✨ Instant Risk Assessment
