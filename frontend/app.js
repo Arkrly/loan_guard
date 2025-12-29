@@ -8,6 +8,26 @@ let loadingScreen, mainApp, progressBar, progressPercent, loadingStatus;
 let form, submitBtn, btnContent, btnLoading, historyList, clearHistoryBtn, toastContainer;
 let resultPlaceholder, resultContent, resultBadge, resultIcon, resultText;
 let scoreCircle, scoreValue, probValue, thresholdValue, resultModelVersion, modelVersion;
+let sidebar, sidebarOverlay;
+
+// ===== Mobile Sidebar Toggle =====
+function toggleSidebar() {
+    if (!sidebar) sidebar = document.getElementById('sidebar');
+    if (!sidebarOverlay) sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    sidebar.classList.toggle('sidebar-open');
+    sidebarOverlay.classList.toggle('active');
+
+    // Prevent body scroll when sidebar is open
+    document.body.style.overflow = sidebar.classList.contains('sidebar-open') ? 'hidden' : '';
+}
+
+// Close sidebar when clicking outside on mobile
+function closeSidebarOnMobile() {
+    if (window.innerWidth < 1024 && sidebar && sidebar.classList.contains('sidebar-open')) {
+        toggleSidebar();
+    }
+}
 
 // ===== Initialize DOM References =====
 function initDOMElements() {
@@ -128,11 +148,11 @@ function updateProgress(percent) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing...');
     initDOMElements();
-    
+
     // Initialize term display first to show correct values
     updateTermDisplay();
     setTermPreset(360); // Set default to 30 years
-    
+
     initializeApp();
     initFormHandler();
 });

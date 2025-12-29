@@ -1,7 +1,7 @@
 /* 
- * LoanGuard - Additional Custom Styles
+ * LoanGuard - Custom Styles with Mobile & Tablet Support
  * Most styling is handled by Tailwind CSS inline
- * This file is for any custom overrides or animations
+ * This file handles responsive overrides and animations
  */
 
 /* Ensure smooth transitions globally */
@@ -54,16 +54,260 @@
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
 input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* ================================================
+   RESPONSIVE STYLES - Mobile & Tablet
+   ================================================ */
+
+/* Mobile sidebar - hidden by default, slides in */
+@media (max-width: 1023px) {
+    /* Sidebar overlay backdrop */
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 40;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    /* Mobile sidebar - slide from left */
+    aside {
+        position: fixed !important;
+        left: 0;
+        top: 0;
+        height: 100vh !important;
+        z-index: 50;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 280px !important;
+    }
+    
+    aside.sidebar-open {
+        transform: translateX(0);
+    }
+    
+    /* Make main content full width */
+    #mainApp {
+        flex-direction: column !important;
+    }
+    
+    /* Mobile header adjustments */
+    header {
+        padding: 1rem !important;
+    }
+    
+    header h2 {
+        font-size: 1.25rem !important;
+    }
+    
+    /* Content area - allow scroll on mobile */
+    .content-area {
+        overflow-y: auto !important;
+        padding: 0.75rem !important;
+    }
+    
+    /* Stack form and result vertically */
+    .form-result-container {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    /* Result panel - full width on mobile */
+    .result-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: unset !important;
+    }
+    
+    /* Form inputs - larger touch targets */
+    input, select, button {
+        min-height: 44px;
+        font-size: 16px !important; /* Prevents iOS zoom */
+    }
+    
+    /* Reduce padding in form cards */
+    .form-card {
+        padding: 1rem !important;
+    }
+    
+    /* Grid adjustments */
+    .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    /* Slider term display - smaller */
+    .term-display {
+        flex-direction: row !important;
+        gap: 0.5rem !important;
+    }
+    
+    .term-display span {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Tablet specific (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Slightly larger result panel for tablets */
+    .result-panel {
+        max-width: 360px !important;
+        margin: 0 auto;
+    }
+}
+
+/* Small mobile (< 640px) */
+@media (max-width: 639px) {
+    /* Reduce header height */
+    header {
+        padding: 0.75rem !important;
+    }
+    
+    /* Smaller title */
+    header h2 {
+        font-size: 1.125rem !important;
+    }
+    
+    /* Hide status badge text on very small screens */
+    .status-badge-text {
+        display: none;
+    }
+    
+    /* Compact form sections */
+    .form-section-title {
+        font-size: 0.625rem !important;
+    }
+    
+    /* Full width buttons */
+    .submit-btn {
+        width: 100% !important;
+    }
+    
+    /* Reduce padding globally */
+    .content-area {
+        padding: 0.5rem !important;
+    }
+    
+    /* Score circle - smaller on mobile */
+    .score-circle {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .score-value {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 1023px) and (orientation: landscape) {
+    /* Use horizontal layout for form */
+    .form-result-container {
+        flex-direction: row !important;
+    }
+    
+    .result-panel {
+        width: 260px !important;
+        min-width: 260px !important;
+    }
+    
+    /* Reduce vertical padding */
+    .content-area {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
 }
 
 /* Print styles */
 @media print {
     .no-print {
         display: none !important;
+    }
+    
+    aside {
+        display: none !important;
+    }
+}
+
+/* ================================================
+   MOBILE MENU BUTTON
+   ================================================ */
+.mobile-menu-btn {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .mobile-menu-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .mobile-menu-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* ================================================
+   TOUCH-FRIENDLY ENHANCEMENTS
+   ================================================ */
+
+/* Larger tap targets for radio/checkbox groups */
+@media (pointer: coarse) {
+    .radio-option, .checkbox-option {
+        min-height: 48px;
+        padding: 12px !important;
+    }
+    
+    /* Prevent text selection on touch */
+    button, .btn {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Remove hover effects on touch */
+    .touch-device .hover-effect:hover {
+        transform: none;
+    }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+    .safe-area-padding {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
     }
 }
