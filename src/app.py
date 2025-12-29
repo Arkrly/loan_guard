@@ -127,7 +127,7 @@ class PredictionResponse(BaseModel):
     """Response schema for prediction endpoint."""
     prediction: Literal["Approved", "Rejected"]
     probability_approved: float = Field(..., ge=0, le=1)
-    risk_score: float = Field(..., ge=0, le=100)
+    approval_rate: float = Field(..., ge=0, le=100, description="Loan approval rate as percentage")
     threshold_used: float
     model_version: str = "1.0"
 
@@ -355,10 +355,14 @@ async def predict_loan_risk(application: LoanApplication):
     """
     Predict loan approval risk based on applicant information.
     
+    Uses a HYBRID approach:
+    - ML model prediction (60% weight)
+    - Manual factor scoring (40% weight) - allows bad credit to be compensated
+    
     Returns:
         - prediction: "Approved" or "Rejected"
         - probability_approved: Probability (0-1) of approval
-        - risk_score: Risk percentage (0-100), higher = riskier
+        - approval_rate: Approval rate percentage (0-100)
         - threshold_used: Decision threshold used
         - model_version: Model version identifier
     """
@@ -373,23 +377,58 @@ async def predict_loan_risk(application: LoanApplication):
         
         processed_data = preprocess_features(application)
         
-        # Predict Probabilities
+        # 1. ML Model Prediction (base)
         probs = model.predict_proba(processed_data)[0]
-        prob_approved = probs[1]
+        ml_prob = probs[1]
+        
+        # 2. Manual Factor Scoring (allows compensation)
+        total_income = application.ApplicantIncome + application.CoapplicantIncome
+        loan_to_income = application.LoanAmount / total_income if total_income > 0 else 999
+        
+        # Calculate manual score (0 to 1)
+        manual_score = 0.0
+        
+        # Credit History: 35% of manual score
+        manual_score += application.Credit_History * 0.35
+        
+        # Income strength: 30% of manual score (scaled by income level)
+        # High income (100k+) = full score, Low income (5k) = minimal
+        income_score = min(total_income / 100000, 1.0)
+        manual_score += income_score * 0.30
+        
+        # Low debt ratio: 20% of manual score
+        # Ratio < 0.1 = full score, Ratio > 0.5 = no score
+        ratio_score = max(0, 1 - (loan_to_income * 2))
+        manual_score += ratio_score * 0.20
+        
+        # Education: 10%
+        education_score = 1.0 if application.Education == "Graduate" else 0.5
+        manual_score += education_score * 0.10
+        
+        # Employment stability: 5%
+        stability_score = 0.7 if application.Self_Employed == "No" else 0.5
+        manual_score += stability_score * 0.05
+        
+        # 3. Combine ML and Manual scores
+        # ML: 60%, Manual: 40% - this allows compensation
+        combined_prob = (ml_prob * 0.60) + (manual_score * 0.40)
+        
+        # Ensure bounds
+        combined_prob = max(0.0, min(1.0, combined_prob))
         
         # Threshold (Optimized from training)
         THRESHOLD = 0.3129
-        prediction = 1 if prob_approved >= THRESHOLD else 0
+        prediction = 1 if combined_prob >= THRESHOLD else 0
         
         result = "Approved" if prediction == 1 else "Rejected"
-        risk_score = (1 - prob_approved) * 100  # Risk is inverse of approval probability
+        approval_rate = combined_prob * 100  # Approval rate as percentage
         
-        logger.info(f"Prediction made: {result} (prob={prob_approved:.4f}, risk={risk_score:.2f})")
+        logger.info(f"Prediction made: {result} (ml={ml_prob:.4f}, manual={manual_score:.4f}, combined={combined_prob:.4f})")
         
         return PredictionResponse(
             prediction=result,
-            probability_approved=round(float(prob_approved), 4),
-            risk_score=round(float(risk_score), 2),
+            probability_approved=round(float(combined_prob), 4),
+            approval_rate=round(float(approval_rate), 2),
             threshold_used=THRESHOLD,
             model_version="1.0"
         )
