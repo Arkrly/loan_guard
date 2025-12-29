@@ -196,3 +196,6 @@ credentials/
 *.pem
 *.key
 secrets/
+
+# Temporary files
+temp/
