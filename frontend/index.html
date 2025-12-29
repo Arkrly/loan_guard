@@ -209,7 +209,7 @@
 
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="w-72 shrink-0 flex flex-col h-full z-10 border-r border-white/10 bg-slate-900/60 backdrop-blur-xl relative lg:relative lg:translate-x-0">
+            class="w-72 shrink-0 flex flex-col h-full z-10 border-r border-white/10 bg-slate-900/60 backdrop-blur-xl relative hidden lg:flex">
             <!-- Sidebar Header -->
             <div class="p-6 pb-4 border-b border-white/5">
                 <div class="flex items-center gap-4">
@@ -252,40 +252,41 @@
         <!-- Main Content -->
         <main class="flex-1 flex flex-col h-full overflow-hidden relative z-10">
             <!-- Top Header -->
-            <header class="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 lg:py-6 pb-2 shrink-0">
+            <header class="flex items-center justify-between px-4 lg:px-8 py-4 lg:py-6 pb-2 shrink-0">
                 <div class="flex items-center gap-3">
                     <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="mobile-menu-btn lg:hidden" onclick="toggleSidebar()">
+                    <button id="mobileMenuBtn"
+                        class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 border border-white/10 text-white"
+                        onclick="toggleSidebar()">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div class="flex flex-col">
-                        <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight">Risk Assessment
-                        </h2>
-                        <p class="text-slate-400 text-[10px] sm:text-xs hidden sm:block">Enter applicant details to
-                            calculate approval probability.</p>
+                        <h2 class="text-xl lg:text-2xl font-bold text-white tracking-tight">Risk Assessment</h2>
+                        <p class="text-slate-400 text-xs hidden sm:block">Enter applicant details to calculate approval
+                            probability.</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-4">
+                <div class="flex items-center gap-4">
                     <div id="statusBadge"
-                        class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-secondary/10 border border-secondary/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
-                        <span class="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
+                        class="flex items-center gap-2 px-2 lg:px-3 py-1 lg:py-1.5 rounded-full bg-secondary/10 border border-secondary/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                        <span class="relative flex h-2 w-2 lg:h-2.5 lg:w-2.5">
                             <span
                                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                             <span
-                                class="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-secondary"></span>
+                                class="relative inline-flex rounded-full h-2 w-2 lg:h-2.5 lg:w-2.5 bg-secondary"></span>
                         </span>
                         <span
-                            class="status-badge-text text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-wide">Online</span>
+                            class="text-secondary text-xs font-bold uppercase tracking-wide hidden sm:inline">Online</span>
                     </div>
                 </div>
             </header>
 
             <!-- Content Area - Scrollable on mobile -->
-            <div class="content-area flex-1 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 overflow-y-auto lg:overflow-hidden">
-                <div class="form-result-container h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-3 lg:gap-4">
+            <div class="flex-1 px-3 lg:px-6 py-2 lg:py-3 overflow-y-auto lg:overflow-hidden">
+                <div class="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-4">
 
                     <!-- Form Section -->
-                    <form id="loanForm" class="flex-1 flex flex-col gap-3 lg:gap-4" onsubmit="event.preventDefault();">
+                    <form id="loanForm" class="flex-1 flex flex-col gap-4" onsubmit="event.preventDefault();">
                         <!-- Glass Card Container -->
                         <div
                             class="bg-surface-glass backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl relative overflow-hidden flex-1">
@@ -300,8 +301,7 @@
                                     class="flex items-center gap-2 text-xs font-bold text-primary mb-3 uppercase tracking-wider">
                                     <span class="material-symbols-outlined text-base">person</span> Personal Information
                                 </h3>
-                                <div class=\"form-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5
-                                    gap-3 lg:gap-4\">
+                                <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
                                     <!-- Gender -->
                                     <div class="flex flex-col gap-1">
                                         <label class="text-xs font-medium text-slate-400 ml-1">Gender</label>
@@ -397,7 +397,7 @@
                                     class="flex items-center gap-2 text-sm font-bold text-primary mb-2 uppercase tracking-wider">
                                     <span class="material-symbols-outlined text-lg">payments</span> Financials
                                 </h3>
-                                <div class=\"form-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4\">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <!-- Applicant Income -->
                                     <div class="flex flex-col gap-2">
                                         <label class="text-xs font-medium text-slate-400 ml-1">Applicant Income
@@ -459,7 +459,7 @@
                                     <span class="material-symbols-outlined text-lg">account_balance</span> Credit &
                                     Assets
                                 </h3>
-                                <div class=\"form-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4\">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <!-- Credit History -->
                                     <div class="flex flex-col gap-2">
                                         <label class="text-xs font-medium text-slate-400 ml-1">Credit History</label>
@@ -577,89 +577,93 @@
                         </div>
 
                         <!-- Action Area -->
-                        <div class=\"flex justify-center sm:justify-end pt-2\">\r\n <button id=\"submitBtn\"
-                                type=\"submit\"\r\n class=\"submit-btn relative group overflow-hidden w-full sm:w-auto
-                                px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-primary-dark to-primary
-                                text-white font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(7,182,213,0.3)]
-                                hover:shadow-[0_0_30px_rgba(7,182,213,0.5)] transition-all transform
-                                hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50
-                                disabled:cursor-not-allowed\">\r\n <span id=\"btnContent\" class=\"relative z-10 flex
-                                    items-center justify-center gap-2\">\r\n <span
-                                        class=\"material-symbols-outlined\">analytics</span>\r\n Analyze Risk\r\n
-                                </span>\r\n <span id=\"btnLoading\" class=\"relative z-10 hidden items-center
-                                    justify-center gap-2\">\r\n <span class=\"material-symbols-outlined
-                                        animate-spin\">sync</span>\r\n Processing...\r\n </span>\r\n <div\r\n
-                                    class=\"absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0
-                                    transition-transform duration-300\">\r\n </div>\r\n </button>\r\n
-                </div>\r\n </form>\r\n\r\n <!-- Result Panel -->\r\n <div id=\"resultPanel\" class=\"result-panel w-full
-                    lg:w-80 shrink-0\">
-                    <div
-                        class="bg-surface-glass backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl relative overflow-hidden sticky top-0">
+                        <div class="flex justify-end pt-2">
+                            <button id="submitBtn" type="submit"
+                                class="relative group overflow-hidden px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary-dark to-primary text-white font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(7,182,213,0.3)] hover:shadow-[0_0_30px_rgba(7,182,213,0.5)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <span id="btnContent" class="relative z-10 flex items-center gap-2">
+                                    <span class="material-symbols-outlined">analytics</span>
+                                    Analyze Risk
+                                </span>
+                                <span id="btnLoading" class="relative z-10 hidden items-center gap-2">
+                                    <span class="material-symbols-outlined animate-spin">sync</span>
+                                    Processing...
+                                </span>
+                                <div
+                                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Result Panel -->
+                    <div id="resultPanel" class="lg:w-80 shrink-0">
                         <div
-                            class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent">
-                        </div>
-
-                        <!-- Placeholder State -->
-                        <div id="resultPlaceholder" class="text-center py-8">
+                            class="bg-surface-glass backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl relative overflow-hidden sticky top-0">
                             <div
-                                class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/5 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-3xl text-slate-500">auto_awesome</span>
-                            </div>
-                            <h3 class="text-white font-semibold mb-2">Awaiting Analysis</h3>
-                            <p class="text-slate-500 text-sm">Fill in the form and click Analyze</p>
-                        </div>
-
-                        <!-- Result Content -->
-                        <div id="resultContent" class="hidden animate-fade-in">
-                            <!-- Status Chip - Modern minimal -->
-                            <div id="resultBadge"
-                                class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl mb-5 transition-all">
-                                <span id="resultIcon" class="material-symbols-outlined text-2xl"></span>
-                                <span id="resultText" class="text-lg font-bold tracking-wide"></span>
+                                class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent">
                             </div>
 
-                            <!-- Approval Gauge - Clean circular -->
-                            <div class="flex flex-col items-center mb-5">
-                                <div class="relative w-24 h-24">
-                                    <!-- Background circle -->
-                                    <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                                        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)"
-                                            stroke-width="6" />
-                                        <circle id="scoreCircle" cx="50" cy="50" r="42" fill="none" stroke-width="6"
-                                            stroke-linecap="round" class="transition-all duration-1000"
-                                            style="stroke-dasharray: 264; stroke-dashoffset: 264;" />
-                                    </svg>
-                                    <!-- Score text -->
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span id="scoreValue" class="text-2xl font-bold text-white">0</span>
-                                        <span class="text-xs text-slate-400">%</span>
+                            <!-- Placeholder State -->
+                            <div id="resultPlaceholder" class="text-center py-8">
+                                <div
+                                    class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/5 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-3xl text-slate-500">auto_awesome</span>
+                                </div>
+                                <h3 class="text-white font-semibold mb-2">Awaiting Analysis</h3>
+                                <p class="text-slate-500 text-sm">Fill in the form and click Analyze</p>
+                            </div>
+
+                            <!-- Result Content -->
+                            <div id="resultContent" class="hidden animate-fade-in">
+                                <!-- Status Chip - Modern minimal -->
+                                <div id="resultBadge"
+                                    class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl mb-5 transition-all">
+                                    <span id="resultIcon" class="material-symbols-outlined text-2xl"></span>
+                                    <span id="resultText" class="text-lg font-bold tracking-wide"></span>
+                                </div>
+
+                                <!-- Approval Gauge - Clean circular -->
+                                <div class="flex flex-col items-center mb-5">
+                                    <div class="relative w-24 h-24">
+                                        <!-- Background circle -->
+                                        <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                                            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)"
+                                                stroke-width="6" />
+                                            <circle id="scoreCircle" cx="50" cy="50" r="42" fill="none" stroke-width="6"
+                                                stroke-linecap="round" class="transition-all duration-1000"
+                                                style="stroke-dasharray: 264; stroke-dashoffset: 264;" />
+                                        </svg>
+                                        <!-- Score text -->
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span id="scoreValue" class="text-2xl font-bold text-white">0</span>
+                                            <span class="text-xs text-slate-400">%</span>
+                                        </div>
                                     </div>
+                                    <span class="text-xs text-slate-500 mt-2 uppercase tracking-wider">Approval
+                                        Rate</span>
                                 </div>
-                                <span class="text-xs text-slate-500 mt-2 uppercase tracking-wider">Approval
-                                    Rate</span>
-                            </div>
 
-                            <!-- Stats - Clean rows -->
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
-                                    <span class="text-slate-400">Approval</span>
-                                    <span id="probValue" class="text-white font-medium">-</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
-                                    <span class="text-slate-400">Threshold</span>
-                                    <span id="thresholdValue" class="text-white font-medium">31.29%</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
-                                    <span class="text-slate-400">Model</span>
-                                    <span id="resultModelVersion" class="text-primary font-medium">v1.0</span>
+                                <!-- Stats - Clean rows -->
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
+                                        <span class="text-slate-400">Approval</span>
+                                        <span id="probValue" class="text-white font-medium">-</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
+                                        <span class="text-slate-400">Threshold</span>
+                                        <span id="thresholdValue" class="text-white font-medium">31.29%</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 rounded-lg bg-white/5">
+                                        <span class="text-slate-400">Model</span>
+                                        <span id="resultModelVersion" class="text-primary font-medium">v1.0</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-    </main>
+        </main>
     </div>
 
     <!-- Toast Container -->
