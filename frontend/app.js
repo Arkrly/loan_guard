@@ -320,7 +320,7 @@ function initFormHandler() {
 
             // Show success toast
             showToast('success', 'Analysis Complete',
-                `Loan ${result.prediction.toLowerCase()}. Risk: ${result.risk_score.toFixed(1)}%`);
+                `Loan ${result.prediction.toLowerCase()}. Approval Rate: ${result.approval_rate.toFixed(1)}%`);
 
         } catch (error) {
             console.error('Error:', error);
@@ -367,7 +367,7 @@ function initFormHandler() {
         }
 
         // Animate score ring (new circumference: 2 * PI * 42 = 264)
-        const score = Math.round(data.risk_score);
+        const score = Math.round(data.approval_rate);
         const circumference = 264;
         const offset = circumference - (score / 100) * circumference;
 
@@ -416,7 +416,7 @@ function initFormHandler() {
             timestamp: new Date().toISOString(),
             amount: input.LoanAmount,
             result: output.prediction,
-            risk: Math.round(output.risk_score),
+            rate: Math.round(output.approval_rate),
             fullInput: input
         };
 
@@ -445,10 +445,10 @@ function initFormHandler() {
             const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
             const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-            const riskClass = item.result === 'Approved'
+            const rateClass = item.result === 'Approved'
                 ? 'bg-green-500/20 text-green-400 border-green-500/20'
                 : 'bg-red-500/20 text-red-400 border-red-500/20';
-            const riskLabel = item.result === 'Approved' ? 'LOW RISK' : 'HIGH RISK';
+            const rateLabel = item.result === 'Approved' ? 'APPROVED' : 'REJECTED';
 
             return `
             <button class="flex items-center justify-between w-full p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
@@ -456,7 +456,7 @@ function initFormHandler() {
                     <span class="text-sm font-medium text-white">#${item.id}</span>
                     <span class="text-xs text-slate-400">${dateStr}, ${timeStr}</span>
                 </div>
-                <span class="px-2 py-1 rounded text-[10px] font-bold ${riskClass} border">${riskLabel}</span>
+                <span class="px-2 py-1 rounded text-[10px] font-bold ${rateClass} border">${rateLabel}</span>
             </button>
         `;
         }).join('');
