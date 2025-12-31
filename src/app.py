@@ -456,7 +456,7 @@ async def predict_loan_risk(application: LoanApplication):
 @app.get("/health")
 async def health_check():
     """
-    Health check endpoint for Koyeb and monitoring.
+    Health check endpoint for deployment platforms and monitoring.
     Returns status, model state, and version info.
     """
     return {
