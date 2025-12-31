@@ -248,10 +248,10 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 
 ## 👤 Author
 
-**Your Name**
-- Portfolio: [your-portfolio.com](https://your-portfolio.com)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
-- GitHub: [@yourusername](https://github.com/yourusername)
+**Aryan Kumar**
+<!-- - Portfolio: [your-portfolio.com](https://your-portfolio.com) -->
+- LinkedIn: [aryankjsr](https://linkedin.com/in/aryankjsr)
+- GitHub: [@arkrly](https://github.com/arkrly)
 
 ---
 
