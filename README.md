@@ -51,7 +51,21 @@ Designed specifically for the Indian lending market with INR currency support.
 
 ## Try It Now
 
-🌐 **[Launch LoanGuard](https://loanguard.onrender.com)**
+🌐 **[Launch LoanGuard](https://loanguard-YOUR_ID.koyeb.app)** *(Update after deployment)*
+
+---
+
+## 🚀 Deployment
+
+This app is deployed on **[Koyeb](https://koyeb.com)** for fast cold starts.
+
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/Arkrly/loan_guard&branch=master&name=loanguard)
+
+| Setting | Value |
+|---------|-------|
+| **Run command** | `uvicorn src.app:app --host 0.0.0.0 --port 8080` |
+| **Port** | `8080` |
+| **Health check** | `/health` |
 
 ---
 

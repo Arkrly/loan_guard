@@ -1,5 +1,5 @@
 # LoanGuard - Production Dependencies
-# Minimal requirements for Render deployment
+# Minimal requirements for Koyeb deployment
 
 # Core (required for prediction)
 numpy>=1.24.0
