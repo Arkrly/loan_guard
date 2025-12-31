@@ -166,6 +166,43 @@ curl -X POST "http://127.0.0.1:8080/predict" \
 
 ---
 
+## 🚀 Deployment (Koyeb)
+
+Deploy this app for **free** on [Koyeb](https://koyeb.com) with faster cold starts than alternatives.
+
+### One-Click Deploy
+
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/YOUR_USERNAME/loan_risk_sys&branch=master&name=loanguard)
+
+### Manual Deployment
+
+1. **Create a Koyeb account** at [koyeb.com](https://koyeb.com)
+
+2. **Create a new App** → Choose **GitHub** as source
+
+3. **Configure the service:**
+   | Setting | Value |
+   |---------|-------|
+   | **Repository** | `your-username/loan_risk_sys` |
+   | **Branch** | `master` |
+   | **Builder** | Buildpack |
+   | **Run command** | `uvicorn src.app:app --host 0.0.0.0 --port 8080` |
+   | **Port** | `8080` |
+   | **Health check path** | `/health` |
+   | **Instance type** | Nano (free tier) |
+   | **Region** | Frankfurt (or closest to you) |
+
+4. **Deploy** → Your app will be live at `https://loanguard-YOUR_ID.koyeb.app`
+
+### Environment Variables (Optional)
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `ALLOWED_ORIGINS` | CORS allowed origins | `*` |
+| `PORT` | Server port | `8080` |
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
